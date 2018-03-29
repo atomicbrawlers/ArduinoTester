@@ -8,8 +8,8 @@
             android:id="@+id/nav_blink"
             android:title="Blink" />
         <item
-            android:id="@+id/nav_other"
-            android:title="Other" />
+            android:id="@+id/nav_single_joystick_drive"
+            android:title="Single Joystick Drive" />
     </group>
 
 </menu>

@@ -83,8 +83,8 @@ public class NavigationPane extends AppCompatActivity
 
         if (id == R.id.nav_blink) {
             startActivity(new Intent(this, Blink.class));
-        } else if (id == R.id.nav_other) {
-            System.out.println("XXXXXXXXXX\nNo other activity exists\nXXXXXXXXXX");
+        } else if (id == R.id.nav_single_joystick_drive) {
+            startActivity(new Intent(this, SingleJoystickDrive.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
