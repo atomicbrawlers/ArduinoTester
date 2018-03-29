@@ -48,7 +48,7 @@ public class Blink extends AppCompatActivity {
         pairedDevices = BA.getBondedDevices();
         for (BluetoothDevice bt : pairedDevices) {
             System.out.println(bt.getName());
-            if (bt.getName().equals("matt HC-05")) { //TODO: CHANGE TO YOUR DEVICE NAME
+            if (bt.getName().equals("HC-05")) { //TODO: CHANGE TO YOUR DEVICE NAME
                 System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
                 mDevice = bt;
             }
@@ -124,14 +124,27 @@ public class Blink extends AppCompatActivity {
         lv.setAdapter(adapter);
     } // <-----------------------------------------------------------------------------------------
 
-    public void button1Pressed(View view){ //Currently does nothing
+    public void button1Pressed(View view){
         System.out.println("Button 1 Pressed");
+
+        try {
+            //mOutStream.write(1000);
+            mOutStream.write('1');
+        } catch (IOException e) {
+
+        }
     }
 
     public void button2Pressed(View view){
         System.out.println("Button 2 Pressed");
 
         try {
+            //mOutStream.write("123456789123456789123456789123456789".getBytes());
+            mOutStream.write('0');
+        } catch (IOException e) {
+
+        }
+     /*   try {
             if (temp)
                 mOutStream.write("0".getBytes());
             else
@@ -140,7 +153,7 @@ public class Blink extends AppCompatActivity {
 
         }
         temp = !temp;
-
+     */
     }
 
 }

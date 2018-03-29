@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JoystickView">
+        <!-- <attr name="layoutSize"             format="dimension" /> -->
+        <attr name="canvasPadding"          format="dimension" />
+        <attr name="joystickColor"          format="color" />
+        <attr name="borderColor"            format="color" />
+        <attr name="borderSize"             format="dimension" />
+        <attr name="thumbstickColor"        format="color" />
+        <attr name="thumbstickRadius"       format="dimension" />
+        <attr name="autoRecenterThumbstick" format="boolean" />
+        <attr name="autoRecenterDelay"      format="integer" />
+        <attr name="physicalThreshold"      format="integer" />
+        <attr name="giveThreshold"          format="integer" />
+        <attr name="enabled"                format="boolean" />
+        <attr name="doubleTapToPress"       format="boolean" />
+        <attr name="doubleTapDelay"         format="integer" />
+        <attr name="doubleTapError"         format="integer" />
+        <attr name="refreshRate"            format="integer" />
+    </declare-styleable>
+
+    <!--   /* ATTRIBUTES
+       LOOK UP R.attr.constantSize
+       * layoutSize - The size of the view/layout; must be a square; value will be used to change
+       *      layout_width and layout_height to the same value
+       * canvasPadding - The size of the padding around the painted object; the edge of the
+       *      layout/view will be this far away from the edge of the painted object
+       * joystickColor - The color of the background
+       * borderColor - The color of the border of the background
+       * borderSize - The size/amount that the border sticks out over the background
+       * thumbstickRadius - The radius of the thumbstick; the object that the user moves around
+       * autoRecenterThumbstick - Boolean; The option to have the thumbstick automatically recenter itself
+       *      after the user lets go of it.
+       * autoRecenterDelay - The option to delay the recentering of the thumbstick; will only work if
+       *      autoRecenterThumbstick is true.
+       * physicalThreshold - A value from 0-100 representing the percentage the thumbstick must be
+       *      pressed before the value output from the joystick will affect the object being
+       *      controlled. The purpose of this is to eliminate the need to account for the error that a
+       *      real-life thumbstick has in the form of "bounce-back." For example, if you are using the
+       *      joystick to run a motor, and the motor doesn't start to turn until 30%, you would set
+       *      the threshold to 30 and when the joystick moves it will start at a value of 30.
+       * giveThreshold - A value from 0-100 representing the percentage the thumbstick must be pressed
+       *      before the joystick values increases above 0. Think of it as the amount you have to
+       *      "inch up" with your finger before the object being controlled starts to move.
+       * enabled - PROBABLY DON'T NEED BECAUSE ANDROID COMES WITH THIS; JUST CHECK THE STATE OF THE
+       *      DEFAULT OPTION FOR THIS [MAYBE]
+       * doubleTapToPress - Boolean; Option to double tap the joystick to act a button press
+       * doubleTapDelay - The amount of time, in milliseconds, the user has to tap a second time in
+       *      order to register a double tap
+       * doubleTapError - The amount of time, in milliseconds, the program will wait until looking for
+       *      a second tap. MUST BE LESS THAN doubleTapDelay or will default to 10 less than, or a
+       *      minimum overall value of [to be determined]
+       * refreshRate - the rate at which the view/layout updates in milliseconds; I think this uses
+       *      thread.sleep(); do more research
+       */ -->
+</resources>
