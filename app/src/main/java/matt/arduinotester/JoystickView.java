@@ -303,7 +303,7 @@ public class JoystickView extends View implements Runnable {
             //    System.out.println("X: " + posX + "  Y: " + posY);
             //    System.out.println("distance from center: " + distanceFromCenter);
             //    System.out.println("Joystick Radius: " + joystickRadius);
-            System.out.println("Angle: " + angle);
+            //    System.out.println("Angle: " + angle);
             try {
                 Thread.sleep(mRefreshRate);
             } catch (InterruptedException e) {
@@ -435,8 +435,8 @@ public class JoystickView extends View implements Runnable {
         } else {
             posX = (int) event.getX();
             posY = (int) event.getY();
-            System.out.println("event.getX() = " + posX);
-            System.out.println("event.getY() = " + posY);
+//            System.out.println("event.getX() = " + posX);
+//            System.out.println("event.getY() = " + posY);
         }
 
         relativePosX = posX - center;

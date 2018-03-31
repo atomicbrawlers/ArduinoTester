@@ -83,10 +83,10 @@ public class SendNumber extends AppCompatActivity {
     public void sendData(View view){
         //char neg = inputBox.getText().toString().substring(0,1).toCharArray()[0];
         //char[] input = inputBox.getText().toString().toCharArray();
-        System.out.println("Data looks like... " + inputBox.getText().toString());
         //for (char i : input) {
         //    System.out.println(i);
         //}
+        System.out.println("Data looks like... " + inputBox.getText().toString());
         try {
             String message = "<";
             int num = Integer.valueOf(inputBox.getText().toString());

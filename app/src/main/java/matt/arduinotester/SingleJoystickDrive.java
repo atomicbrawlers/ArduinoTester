@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.Socket;
 import java.util.Set;
 import java.util.UUID;
 
@@ -81,11 +82,23 @@ public class SingleJoystickDrive extends AppCompatActivity {
         myJoystick.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                int num = myJoystick.getPercentageY();
+                if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                    num = 0;
+                }
+                System.out.println("Data looks like... " + num);
                 try {
-                    mOutStream.write((byte)myJoystick.getPercentageY()); //try casting as a byte if negatives don't work
-                    //mOutStream.write((byte) (255 * .01 * myJoystick.getPercentageY()));
+                    String message = "<";
+                    if (num < 0) {
+                        message += "-";
+                        num = Math.abs(num);
+                    }
+                    message += num + ">";
+                    System.out.println("Sending... " + message);
+                    mOutStream.write(message.getBytes());
                 } catch (IOException e) {
-
+                    System.out.println("ERROR: Message not sent");
+                    System.out.println("Connection Status?: " + mSocket.isConnected());
                 }
                 return false;
             }
