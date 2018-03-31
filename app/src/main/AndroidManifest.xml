@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Blink" />
-        <activity android:name=".SingleJoystickDrive"></activity>
+        <activity android:name=".SingleJoystickDrive" />
+        <activity android:name=".SendNumber"></activity>
     </application>
 
 </manifest>

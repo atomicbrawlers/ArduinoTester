@@ -10,6 +10,9 @@
         <item
             android:id="@+id/nav_single_joystick_drive"
             android:title="Single Joystick Drive" />
+        <item
+            android:id="@+id/nav_send_number"
+            android:title="Send Number" />
     </group>
 
 </menu>

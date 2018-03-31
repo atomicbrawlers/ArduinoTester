@@ -85,6 +85,8 @@ public class NavigationPane extends AppCompatActivity
             startActivity(new Intent(this, Blink.class));
         } else if (id == R.id.nav_single_joystick_drive) {
             startActivity(new Intent(this, SingleJoystickDrive.class));
+        } else if (id == R.id.nav_send_number) {
+            startActivity(new Intent(this, SendNumber.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
