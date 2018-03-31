@@ -82,10 +82,8 @@ public class SingleJoystickDrive extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 try {
-                    if (myJoystick.getPercentageY() > 30)
-                        mOutStream.write('1');
-                    else if (myJoystick.getPercentageY() < 30)
-                        mOutStream.write('0');
+                    mOutStream.write((byte)myJoystick.getPercentageY()); //try casting as a byte if negatives don't work
+                    //mOutStream.write((byte) (255 * .01 * myJoystick.getPercentageY()));
                 } catch (IOException e) {
 
                 }
