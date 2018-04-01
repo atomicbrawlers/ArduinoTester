@@ -25,7 +25,9 @@
         </activity>
         <activity android:name=".Blink" />
         <activity android:name=".SingleJoystickDrive" />
-        <activity android:name=".SendNumber"></activity>
+        <activity android:name=".SendNumber" />
+        <activity android:name=".GTADriveSlider">
+        </activity>
     </application>
 
 </manifest>

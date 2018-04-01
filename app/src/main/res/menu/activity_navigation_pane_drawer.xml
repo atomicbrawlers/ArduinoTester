@@ -13,6 +13,9 @@
         <item
             android:id="@+id/nav_send_number"
             android:title="Send Number" />
+        <item
+            android:id="@+id/nav_gta_drive_slider"
+            android:title="GTA Drive Slider" />
     </group>
 
 </menu>
