@@ -16,6 +16,9 @@
         <item
             android:id="@+id/nav_gta_drive_slider"
             android:title="GTA Drive Slider" />
+        <item
+            android:id="@+id/nav_tank_drive_slider"
+            android:title="Tank Drive Slider" />
     </group>
 
 </menu>

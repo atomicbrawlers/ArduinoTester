@@ -26,7 +26,8 @@
         <activity android:name=".Blink" />
         <activity android:name=".SingleJoystickDrive" />
         <activity android:name=".SendNumber" />
-        <activity android:name=".GTADriveSlider">
+        <activity android:name=".GTADriveSlider" />
+        <activity android:name=".TankDriveSlider">
         </activity>
     </application>
 
