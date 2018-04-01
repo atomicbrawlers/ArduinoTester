@@ -91,6 +91,8 @@ public class NavigationPane extends AppCompatActivity
             startActivity(new Intent(this, GTADriveSlider.class));
         } else if (id == R.id.nav_tank_drive_slider) {
             startActivity(new Intent(this, TankDriveSlider.class));
+        } else if (id == R.id.nav_send_two_numbers) {
+            startActivity(new Intent(this, SendTwoNumbers.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
