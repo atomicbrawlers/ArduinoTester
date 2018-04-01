@@ -5,4 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="title_activity_gta_drive_slider">GTA Drive Slider</string>
+
+    <string name="title_activity_tank_drive_slider">Tank Drive Slider</string>
 </resources>

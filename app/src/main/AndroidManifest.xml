@@ -26,8 +26,16 @@
         <activity android:name=".Blink" />
         <activity android:name=".SingleJoystickDrive" />
         <activity android:name=".SendNumber" />
-        <activity android:name=".GTADriveSlider" />
-        <activity android:name=".TankDriveSlider">
+        <activity android:name=".GTADriveSlider"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_gta_drive_slider"
+            android:screenOrientation="landscape"/>
+            <!--android:theme="@style/FullscreenTheme"!-->
+        <activity android:name=".TankDriveSlider"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_tank_drive_slider"
+            android:screenOrientation="landscape">
+        <!--android:theme="@style/FullscreenTheme"!-->
         </activity>
     </application>
 

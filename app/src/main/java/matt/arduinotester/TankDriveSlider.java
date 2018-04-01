@@ -1,11 +1,20 @@
 package matt.arduinotester;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Set;
+import java.util.UUID;
 
 import static android.R.color.holo_red_dark;
 import static android.R.color.holo_red_light;
@@ -29,15 +38,49 @@ public class TankDriveSlider extends AppCompatActivity {
                                  | View.SYSTEM_UI_FLAG_FULLSCREEN
                                  | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
+    //Bluetooth Variables
+    private BluetoothAdapter BA;
+    private Set<BluetoothDevice> pairedDevices;
+    ListView lv;
+    BluetoothDevice mDevice;
+    private BluetoothSocket mSocket;
+    OutputStream mOutStream;
+    private UUID myUUID;
+    private final String UUID_STRING_WELL_KNOWN_SPP =
+            "00001101-0000-1000-8000-00805F9B34FB";
+
+    private boolean connectionEstablished = false;
+
     class BluetoothTransfer implements Runnable {
         private volatile boolean exit = false;
 
         public void run(){
-            while(!exit) { //thread runs inside loop
+            while(!exit && connectionEstablished) { //thread runs inside loop
                 if (!emergencyStop) {
                     //TODO: Send values through Bluetooth here
                     //Send left value
                     //Send right value
+                    int num = leftSpeed;
+                    System.out.println("Data looks like... " + num);
+                    try {
+                        String message = "<";
+                        if (num < 0) {
+                            message += "-";
+                            num = Math.abs(num);
+                        }
+                        message += num + ">";
+                        System.out.println("Sending... " + message);
+                        mOutStream.write(message.getBytes());
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+
+                        }
+                    } catch (IOException e) {
+                        System.out.println("ERROR: Message not sent");
+                        System.out.println("Connection Status?: " + mSocket.isConnected());
+                    }
+
                 }
             } //thread stops outside loop
         }
@@ -56,6 +99,8 @@ public class TankDriveSlider extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_drive_slider);
+
+        establishBluetoothConnection();
 
         mContentView = findViewById(R.id.fullscreen_content_tank);
         mContentView.setSystemUiVisibility(FULLSCREEN);
@@ -157,4 +202,50 @@ public class TankDriveSlider extends AppCompatActivity {
         mLeftDriveInput .setProgress(RELATIVE_ZERO);
         mRightDriveInput.setProgress(RELATIVE_ZERO);
     }
+
+    //Currently has to run first thing, failures causes activity not to launch properly
+    private void establishBluetoothConnection(){
+        myUUID = UUID.fromString(UUID_STRING_WELL_KNOWN_SPP);
+        BA = BluetoothAdapter.getDefaultAdapter();
+        lv = findViewById(R.id.listView);
+
+        mDevice = null;
+
+        pairedDevices = BA.getBondedDevices();
+        for (BluetoothDevice bt : pairedDevices) {
+            System.out.println(bt.getName());
+            if (bt.getName().equals("HC-05")) { //TODO: CHANGE TO YOUR DEVICE NAME
+                System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+                mDevice = bt;
+            }
+        }
+
+        try {
+            mSocket = mDevice.createRfcommSocketToServiceRecord(myUUID);
+        } catch (IOException e) {
+            mSocket = null;
+        }
+
+        Boolean tmp = true;
+
+        try {
+            mSocket.connect();
+        } catch (IOException connectException) {
+            try {
+                mSocket.close();
+                tmp = false;
+            } catch (IOException closeException) {
+            }
+        }
+
+        mOutStream = null;
+        if (tmp) {
+            try {
+                mOutStream = mSocket.getOutputStream();
+                connectionEstablished = true;
+            } catch (IOException e) {
+            }
+        }
+    }
+
 }
