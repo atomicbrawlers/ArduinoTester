@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -60,27 +61,13 @@ public class TankDriveSlider extends AppCompatActivity {
                     //TODO: Send values through Bluetooth here
                     //Send left value
                     //Send right value
-                    int num = leftSpeed;
-                    System.out.println("Data looks like... " + num);
+
+                    sendData();
                     try {
-                        String message = "<";
-                        if (num < 0) {
-                            message += "-";
-                            num = Math.abs(num);
-                        }
-                        message += num + ">";
-                        System.out.println("Sending... " + message);
-                        mOutStream.write(message.getBytes());
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-
-                        }
-                    } catch (IOException e) {
-                        System.out.println("ERROR: Message not sent");
-                        System.out.println("Connection Status?: " + mSocket.isConnected());
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        //Do nothing
                     }
-
                 }
             } //thread stops outside loop
         }
@@ -248,4 +235,31 @@ public class TankDriveSlider extends AppCompatActivity {
         }
     }
 
+    public void sendData(){
+        System.out.println("Data looks like... " + leftSpeed + "," + rightSpeed);
+        try {
+            String message = "<";
+
+            int num = leftSpeed;
+            if (num < 0) {
+                message += "-";
+                num = Math.abs(num);
+            }
+            message += num + ",";
+
+            num = rightSpeed;
+            if (num < 0) {
+                message += "-";
+                num = Math.abs(num);
+            }
+            message += num + ">";
+
+            System.out.println("Sending... " + message);
+            mOutStream.write(message.getBytes());
+
+        } catch (IOException e) {
+            System.out.println("ERROR: Message not sent");
+            System.out.println("Connection Status?: " + mSocket.isConnected());
+        }
+    }
 }
